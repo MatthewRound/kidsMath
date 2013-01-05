@@ -8,19 +8,16 @@
 	<property name="dist" location="dist" />
 	<property name="jarRoot" location="jarRoot" />
 
-	
 	<path id="project-classpath">
 		<fileset dir="./" includes="*.jar" />
 		<fileset dir="${src}" includes="*.jar" />
 	</path>
-
 
 	<target name="init">
     	<tstamp/>
     	<mkdir dir="${build}" />
     	<mkdir dir="${dist}" />
     </target>
-
   	
 	<target name="compile" depends="clean,init" description="compile the source " >
 		<javac 	
@@ -31,7 +28,6 @@
 			classpathref="project-classpath" />
     </target>
 
-
 	<target name="dist" depends="compile" description="generate the distribution" >
 	<!--	<unjar  src="${src}/zip4j_1.3.1.jar" dest="${dist}/"/>-->
 		<copy todir="${dist}">
@@ -40,7 +36,6 @@
         <delete dir="${build}"/>
     	<jar jarfile="./${ant.project.name}.jar" basedir="${dist}" manifest="${src}/jarmanifest"/>
   	</target>
-
 	
 	<target name="clean" description="clean up" >
     	<delete dir="${build}"/>
@@ -49,6 +44,5 @@
         <delete dir="${warRoot}"/>
         <delete file="${ant.project.name}.jar"/>
     </target>
-
 
 </project>

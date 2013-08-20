@@ -11,9 +11,10 @@ public class Controller {
 
 	public Controller() {
 		QuestionList questionList = new QuestionList();
+		QuestionHistory history = new QuestionHistory();
 		
 		//window
-		View window = new View(questionList);
+		View window = new View(questionList, history);
 		window.setVisible(true);
 	}
 	

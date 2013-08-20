@@ -13,12 +13,14 @@ import javax.swing.JTextField;
 
 import roundyz.kids.math.model.Question;
 import roundyz.kids.math.model.QuestionList;
+import roundyz.kids.math.model.QuestionHistory;
 
 public class View extends JFrame {
 
 	//test
 	private static final long serialVersionUID = -4866723338357353993L;
 	QuestionList questionList;
+	QuestionHistory history;
 	Question question;
 	Font bigFont = new Font("Verdana", Font.BOLD, 50);
 
@@ -30,7 +32,7 @@ public class View extends JFrame {
 	JTextField equalsSign = new JTextField();
 	
 	
-	public View(QuestionList questionList) {
+	public View(QuestionList questionList, QuestionHistory history) {
 		this.questionList = questionList;
 		this.setup();
 	}
@@ -140,7 +142,6 @@ public class View extends JFrame {
 			}
 		};
 	}
-
 
 	private MouseListener getLastQuestionListener(final View view) {
 		return new MouseListener() {
@@ -255,6 +256,7 @@ public class View extends JFrame {
 							format = "You tried too many times. Answer was %s, last attempt was %s";
 						}
 					}
+					history.addToList(view.question);
 					message = String.format(format, view.question.getAnswer(),
 							view.question.getGuess());
 				} catch (Exception e) {

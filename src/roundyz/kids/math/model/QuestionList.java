@@ -3,11 +3,12 @@ package roundyz.kids.math.model;
 import java.util.Random;
 import java.util.Vector;
 
-public class QuestionList {
+public class QuestionList 
+{
 
-	private Vector<Question> questions;
-	private int pointer;
-	private int pointerlimit;
+	protected Vector<Question> questions;
+	protected int pointer;
+	protected int pointerlimit;
 	
 	
 	public Question getRandom(){
@@ -16,7 +17,6 @@ public class QuestionList {
 		this.setPointer(random);
 		return this.getCurrent();
 	}
-
 
 	private void setupQuestionList() {
 

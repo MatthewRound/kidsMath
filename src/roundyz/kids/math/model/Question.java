@@ -1,6 +1,7 @@
 package roundyz.kids.math.model;
 
-public class Question {
+public class Question 
+{
 
 	private int firstNumber;
 	

@@ -108,30 +108,25 @@ public class View extends JFrame {
 	}
 
 	private MouseListener getRandomQuestionListener(final View view) {
-		// TODO Auto-generated method stub
 		return new MouseListener() {
 			
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 			
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 			
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 			
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 			
@@ -237,32 +232,36 @@ public class View extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				String answer = view.guessAnswer.getText().trim();
 				String message;
+				int guess = 0;
 				try {
-					int guess = Integer.parseInt(answer);
-					view.question.setGuess(guess);
-					String format = "Wrong! \nAnswer was %s, you said %s!";
-					view.guessAnswer.setBackground(Color.red);
-					int attempt = view.question.getAttempt();
-					if (view.question.checkAnswer()) {
-						format = "Well done! %s = %s.";
-						view.guessAnswer.setBackground(Color.green);
-					}
-					else
-					{
-						//TODO fix this
-						view.question.setAttempt(attempt++);
-						if (view.question.getAttempt() >= question.getTries())
-						{
-							format = "You tried too many times. Answer was %s, last attempt was %s";
-						}
-					}
-					history.addToList(view.question);
-					message = String.format(format, view.question.getAnswer(),
-							view.question.getGuess());
+					guess = Integer.parseInt(answer);
 				} catch (Exception e) {
 					message = "You need to type an number first";
 					view.guessAnswer.setBackground(Color.orange);
+					System.out.println("error:"+ e.getMessage());
 				}
+
+				view.question.setGuess(guess);
+				String format = "Wrong! \nAnswer was %s, you said %s!";
+				view.guessAnswer.setBackground(Color.red);
+				int attempt = view.question.getAttempt();
+				if (view.question.checkAnswer()) {
+					format = "Well done! %s = %s.";
+					view.guessAnswer.setBackground(Color.green);
+				}
+				else
+				{
+					//TODO fix this
+					view.question.setAttempt(attempt++);
+					if (view.question.getAttempt() >= question.getTries())
+					{
+						format = "You tried too many times. Answer was %s, last attempt was %s";
+					}
+				}
+				history.addToList(view.question); 
+				System.out.println(history.getQuestions().size());
+				message = String.format(format, view.question.getAnswer(),
+						view.question.getGuess());
 
 				JOptionPane.showMessageDialog(view, message);
 			}

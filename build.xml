@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="KidsMath" default="dist" basedir=".">
+<project name="kidsmath" default="dist" basedir=".">
 	<description> Kids math build file </description>
 
 	<property name="src" location="src" />

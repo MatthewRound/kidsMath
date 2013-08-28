@@ -1,4 +1,4 @@
-package roundyz.kids.math;
+package roundyz.kids.math.views;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -15,7 +15,7 @@ import roundyz.kids.math.model.Question;
 import roundyz.kids.math.model.QuestionList;
 import roundyz.kids.math.model.QuestionHistory;
 
-public class View extends JFrame {
+public class DefaultView extends JFrame {
 
 	//test
 	private static final long serialVersionUID = -4866723338357353993L;
@@ -32,7 +32,7 @@ public class View extends JFrame {
 	JTextField equalsSign = new JTextField();
 	
 	
-	public View(QuestionList questionList, QuestionHistory history) {
+	public DefaultView(QuestionList questionList, QuestionHistory history) {
 		this.questionList = questionList;
 		this.setup();
 	}
@@ -107,7 +107,7 @@ public class View extends JFrame {
 
 	}
 
-	private MouseListener getRandomQuestionListener(final View view) {
+	private MouseListener getRandomQuestionListener(final DefaultView view) {
 		return new MouseListener() {
 			
 			@Override
@@ -138,7 +138,7 @@ public class View extends JFrame {
 		};
 	}
 
-	private MouseListener getLastQuestionListener(final View view) {
+	private MouseListener getLastQuestionListener(final DefaultView view) {
 		return new MouseListener() {
 
 			public void mouseReleased(MouseEvent arg0) {
@@ -169,7 +169,7 @@ public class View extends JFrame {
 		this.question = question;
 	}
 
-	private MouseListener getNextQuestionListener(final View view) {
+	private MouseListener getNextQuestionListener(final DefaultView view) {
 
 		return new MouseListener() {
 
@@ -214,7 +214,7 @@ public class View extends JFrame {
 		};
 	}
 
-	private MouseListener getShowAnswerListener(final View view) {
+	private MouseListener getShowAnswerListener(final DefaultView view) {
 		return new MouseListener() {
 
 			public void mouseReleased(MouseEvent arg0) {
@@ -240,24 +240,21 @@ public class View extends JFrame {
 					view.guessAnswer.setBackground(Color.orange);
 					System.out.println("error:"+ e.getMessage());
 				}
-
 				view.question.setGuess(guess);
 				String format = "Wrong! \nAnswer was %s, you said %s!";
 				view.guessAnswer.setBackground(Color.red);
-				int attempt = view.question.getAttempt();
+				int attempt = view.question.getAttempt()!=0?view.question.getAttempt():1;
 				if (view.question.checkAnswer()) {
 					format = "Well done! %s = %s.";
 					view.guessAnswer.setBackground(Color.green);
-				}
-				else
-				{
+				} else {
 					//TODO fix this
-					view.question.setAttempt(attempt++);
-					if (view.question.getAttempt() >= question.getTries())
-					{
+ 					view.question.setAttempt(attempt++); 
+					if (view.question.getAttempt() >= question.getTries()) {
 						format = "You tried too many times. Answer was %s, last attempt was %s";
 					}
 				}
+				//TODO fix this
 				history.addToList(view.question); 
 				System.out.println(history.getQuestions().size());
 				message = String.format(format, view.question.getAnswer(),

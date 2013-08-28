@@ -1,6 +1,7 @@
 package roundyz.kids.math;
 
 import roundyz.kids.math.model.*;
+import roundyz.kids.math.views.*;
 
 public class Controller {
 
@@ -14,7 +15,7 @@ public class Controller {
 		QuestionHistory history = new QuestionHistory();
 		
 		//window
-		View window = new View(questionList, history);
+		DefaultView window = new DefaultView(questionList, history);
 		window.setVisible(true);
 	}
 	

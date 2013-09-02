@@ -4,8 +4,13 @@ public class Question
 {
 
 	private int firstNumber;
-	
 	private int guess;
+	private int secondNumber;
+	private int answer;
+	private char operator;
+	private int tries=3;
+	private int attempt=1;
+
 
 	public int getFirstNumber() {
 		return firstNumber;
@@ -38,13 +43,6 @@ public class Question
 	public void setOperator(char operator) {
 		this.operator = operator;
 	}
-
-	private int secondNumber;
-	private int answer;
-	private char operator;
-	
-	private int tries=3;
-	private int attempt=1;
 
 	public int getTries() {
 		return tries;
@@ -79,6 +77,18 @@ public class Question
 
 	public int getGuess() {
 		return guess;
+	}
+
+	public String[] toArray()
+	{
+		String[] ret = new String[6];
+		ret[1] = Integer.toString(firstNumber);	
+		ret[2] = Character.toString(operator);	
+		ret[3] = Integer.toString(secondNumber);	
+		ret[4] = Integer.toString(answer);	
+		ret[5] = Integer.toString(guess);	
+		ret[6] = Integer.toString(attempt);	
+		return ret;
 	}
 
 }

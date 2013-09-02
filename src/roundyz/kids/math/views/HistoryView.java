@@ -15,31 +15,28 @@ import roundyz.kids.math.model.Question;
 import roundyz.kids.math.model.QuestionList;
 import roundyz.kids.math.model.QuestionHistory;
 
-public class DefaultView extends JFrame 
+public class HistoryView extends JFrame 
 {
 
 
 	//test
-	private static final long serialVersionUID = -4866723338357353993L;
-	QuestionList questionList;
+	private static final long serialVersionUID = -4566723338357353993L;
 
-	//TODO show history
 	QuestionHistory history;
-	Question question;
 	Font bigFont = new Font("Verdana", Font.BOLD, 50);
 
 	Font smallFont = new Font("Verdana", Font.PLAIN,25);
-	JTextField guessAnswer = new JTextField();
 	JTextField firstNumber = new JTextField();
 	JTextField operator = new JTextField();
 	JTextField secondNumber = new JTextField();
-	JTextField equalsSign = new JTextField();
+	JTextField attemptOne = new JTextField();
+	JTextField attemptTwo = new JTextField();
+	JTextField attemptThree = new JTextField();
+	JTextField guessAnswer = new JTextField();
 	
 	
 	public DefaultView(QuestionList questionList, QuestionHistory history) 
 	{
-		this.questionList = questionList;
-		this.history = history;
 		this.setup();
 	}
 
@@ -70,7 +67,12 @@ public class DefaultView extends JFrame
 		int windowWidth = 300;
 		int windowHeight = 210;
 		this.setSize(windowWidth, windowHeight);
-		GridLayout layout = new GridLayout(5, 2);
+		/*
+			1 | x | 2 | ANSWER | Attempt 1 | Attempt 2 | Attempt 3
+			------------------------------------------------------
+			                     exit
+		*/
+		GridLayout layout = new GridLayout(11, 7);
 		this.setLayout(layout);
 		guessAnswer.setVisible(true);
 		firstNumber.setEditable(false);

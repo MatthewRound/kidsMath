@@ -32,12 +32,6 @@ public class HistoryView extends JFrame
 	}
 
 
-	public void refreshBoxes() 
-	{
-  		this.repaint();
-	}
-
-
 	public void setup() 
 	{
 		int windowWidth = 300;
@@ -49,48 +43,45 @@ public class HistoryView extends JFrame
 			                     exit
 		*/
 		
-		GridLayout layout = new GridLayout(1, 1);
+		GridLayout layout = new GridLayout(2, 1);
 		this.setLayout(layout);
 		this.add(this.getTable());		
+
+		JButton exitButton = new JButton("Exit");
+		exitButton.setBackground(Color.gray);
+		exitButton.setForeground(Color.white);
+		exitButton.addMouseListener(this.getExitMouseListener(this) );
+
+		this.add(exitButton);		
+
 		this.repaint();
 	}
 
 
-	private MouseListener getRandomQuestionListener(final DefaultView view) 
-	{
-		return new MouseListener() {
-			@Override
+		private MouseListener getExitMouseListener(final HistoryView view) {
+			return new MouseListener() {
+				public void mouseClicked(MouseEvent arg0) {
+					view.dispose();
+				}
 			public void mouseReleased(MouseEvent arg0) {
 			}
-			@Override
+
 			public void mousePressed(MouseEvent arg0) {
 			}
-			@Override
+
 			public void mouseExited(MouseEvent arg0) {
 			}
-			@Override
+
 			public void mouseEntered(MouseEvent arg0) {
 			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				view.refreshBoxes();
-			}
-		};
-	}
 
-	public JButton getButton(String label) 
-	{
-		JButton j = new JButton(label);
-		j.setBackground(Color.gray);
-		j.setForeground(Color.white);
-		j.setFont(this.smallFont);
-		return j;
-	}
+			};
 
+		}
 
 	private JTable getTable()
 	{
-		String[][] data = new String[10][10];
+		String[][] data = new String[10][6];
 		String[] columns = {
 			"firstnumber",
 			"operator",
@@ -99,9 +90,11 @@ public class HistoryView extends JFrame
 			"attempt",
 			"guess"
 		};
-		int count = 0;
+		int count = 1;
+		data[0] = columns;
 		for (Question question: this.history.getQuestions()) {
 			data[count] = question.toArray();
+			count++;
 		}
 		JTable table = new JTable(data, columns);
 		return table;

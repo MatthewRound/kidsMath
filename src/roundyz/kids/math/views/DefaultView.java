@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import roundyz.kids.math.model.Question;
 import roundyz.kids.math.model.QuestionList;
 import roundyz.kids.math.model.QuestionHistory;
+import roundyz.kids.math.views.*;
 
 public class DefaultView extends JFrame 
 {
@@ -27,6 +28,7 @@ public class DefaultView extends JFrame
 	QuestionHistory history;
 	Question question;
 	Font bigFont = new Font("Verdana", Font.BOLD, 50);
+	HistoryView historyView;
 
 	Font smallFont = new Font("Verdana", Font.PLAIN,25);
 	JTextField guessAnswer = new JTextField();
@@ -70,7 +72,7 @@ public class DefaultView extends JFrame
 		int windowWidth = 300;
 		int windowHeight = 210;
 		this.setSize(windowWidth, windowHeight);
-		GridLayout layout = new GridLayout(5, 2);
+		GridLayout layout = new GridLayout(6, 2);
 		this.setLayout(layout);
 		guessAnswer.setVisible(true);
 		firstNumber.setEditable(false);
@@ -85,6 +87,7 @@ public class DefaultView extends JFrame
 		// buttons
 		JButton showAnswer = this.getButton("=");
 		showAnswer.addMouseListener(this.getShowAnswerListener(this));
+
 		JButton exit = this.getButton("Exit");
 		exit.addMouseListener(this.getExitListener());
 
@@ -97,6 +100,8 @@ public class DefaultView extends JFrame
 		JButton lastQuestion = this.getButton("last");
 		lastQuestion.addMouseListener(this.getLastQuestionListener(this));
 
+		JButton showHistory = this.getButton("Score");
+		showHistory.addMouseListener(this.getShowHistoryListener(this));
 		
 		this.add(lastQuestion);
 		
@@ -112,6 +117,7 @@ public class DefaultView extends JFrame
 		
 		this.add(exit);
 		this.add(showAnswer);
+		this.add(showHistory);
 		this.repaint();
 
 	}
@@ -299,5 +305,28 @@ public class DefaultView extends JFrame
 		return j;
 	}
 
+
+	private MouseListener getShowHistoryListener(final DefaultView view) 
+	{
+		return new MouseListener() {
+
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			public void mouseClicked(MouseEvent arg0) {
+				view.historyView = new HistoryView(view.history);
+				view.historyView.setVisible(true);
+			}
+
+			public void mouseEntered(MouseEvent arg0) {
+			}
+		};
+	}
 
 }

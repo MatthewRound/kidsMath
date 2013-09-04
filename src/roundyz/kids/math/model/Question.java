@@ -82,12 +82,12 @@ public class Question
 	public String[] toArray()
 	{
 		String[] ret = new String[6];
-		ret[1] = Integer.toString(firstNumber);	
-		ret[2] = Character.toString(operator);	
-		ret[3] = Integer.toString(secondNumber);	
-		ret[4] = Integer.toString(answer);	
-		ret[5] = Integer.toString(guess);	
-		ret[6] = Integer.toString(attempt);	
+		ret[0] = Integer.toString(firstNumber);	
+		ret[1] = Character.toString(operator);	
+		ret[2] = Integer.toString(secondNumber);	
+		ret[3] = Integer.toString(answer);	
+		ret[4] = Integer.toString(guess);	
+		ret[5] = Integer.toString(attempt);	
 		return ret;
 	}
 

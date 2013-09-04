@@ -20,11 +20,6 @@ public class Controller
 		DefaultView window = new DefaultView(questionList, history);
 		window.setVisible(true);
 
-
-
-		HistoryView hist = new HistoryView(history);
-		hist.setVisible(true);
-
 	}
 	
 

@@ -10,6 +10,7 @@ public class Question
 	private char operator;
 	private int tries=3;
 	private int attempt=1;
+	public boolean wasCorrect;
 
 
 	public int getFirstNumber() {

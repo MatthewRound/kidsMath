@@ -24,6 +24,9 @@ public class DefaultView extends JFrame
 	private static final long serialVersionUID = -4866723338357353993L;
 	QuestionList questionList;
 
+	int windowWidth = 300;
+	int windowHeight = 210;
+
 	//TODO show history
 	QuestionHistory history;
 	Question question;
@@ -35,7 +38,6 @@ public class DefaultView extends JFrame
 	JTextField firstNumber = new JTextField();
 	JTextField operator = new JTextField();
 	JTextField secondNumber = new JTextField();
-	JTextField equalsSign = new JTextField();
 	
 	
 	public DefaultView(QuestionList questionList, QuestionHistory history) 
@@ -69,18 +71,13 @@ public class DefaultView extends JFrame
 	public void setup() 
 	{
 		this.question = this.questionList.getCurrent();
-		int windowWidth = 300;
-		int windowHeight = 210;
 		this.setSize(windowWidth, windowHeight);
-		GridLayout layout = new GridLayout(6, 2);
+		GridLayout layout = new GridLayout(5, 2);
 		this.setLayout(layout);
 		guessAnswer.setVisible(true);
 		firstNumber.setEditable(false);
 		secondNumber.setEditable(false);
 		operator.setEditable(false);
-		equalsSign.setEditable(false);
-		equalsSign.setText("=");
-		equalsSign.setFont(bigFont);
 
 		this.refreshBoxes();
 
@@ -104,19 +101,18 @@ public class DefaultView extends JFrame
 		showHistory.addMouseListener(this.getShowHistoryListener(this));
 		
 		this.add(lastQuestion);
-		
 		this.add(nextQuestion);
-		this.add(random);
 
+		this.add(random);
 		this.add(firstNumber);
+
 		this.add(operator);
 		this.add(secondNumber);
-		this.add(equalsSign);
+
+		this.add(showAnswer);
 		this.add(guessAnswer);
 		
-		
 		this.add(exit);
-		this.add(showAnswer);
 		this.add(showHistory);
 		this.repaint();
 
@@ -272,9 +268,11 @@ public class DefaultView extends JFrame
 				view.question.setGuess(guess);
 				String format = "Wrong! \nAnswer was %s, you said %s!";
 				view.guessAnswer.setBackground(Color.red);
+				view.question.wasCorrect = false;
 				int attempt = view.question.getAttempt()!=0?view.question.getAttempt():1;
 				if (view.question.checkAnswer()) {
 					format = "Well done! %s = %s.";
+					view.question.wasCorrect = true;
 					view.guessAnswer.setBackground(Color.green);
 				} else {
  					view.question.setAttempt(attempt++); 
@@ -320,7 +318,8 @@ public class DefaultView extends JFrame
 			}
 
 			public void mouseClicked(MouseEvent arg0) {
-				view.historyView = new HistoryView(view.history);
+				//TODO add current location here
+				view.historyView = new HistoryView(view.history, view.windowWidth, view.windowHeight);
 				view.historyView.setVisible(true);
 			}
 

@@ -19,16 +19,23 @@ import roundyz.kids.math.model.QuestionHistory;
 public class HistoryView extends JFrame 
 {
 
+	int x = 0;
+	int y = 0;
+
 
 	private static final long serialVersionUID = -4566723338357353993L;
 	QuestionHistory history;
 	Font smallFont = new Font("Verdana", Font.PLAIN,25);
 	
 
-	public HistoryView(QuestionHistory history) 
+	public HistoryView(QuestionHistory history, int x, int y) 
 	{
+		//todo add current location
 		this.history = history;
+		this.x = x;
+		this.y = y;
 		this.setup();
+		
 	}
 
 
@@ -81,21 +88,39 @@ public class HistoryView extends JFrame
 
 	private JTable getTable()
 	{
-		String[][] data = new String[10][6];
+		String[][] data = new String[this.history.getQuestions().size()+2][6];
+
 		String[] columns = {
 			"firstnumber",
 			"operator",
 			"secondnumber",
 			"answer",
 			"attempt",
-			"guess"
+			"correct ?"
 		};
-		int count = 1;
+
+		int count = 0;
+		int correct = 0;
 		data[0] = columns;
 		for (Question question: this.history.getQuestions()) {
 			data[count] = question.toArray();
+			if (question.wasCorrect) {
+				correct++;
+			}
 			count++;
 		}
+
+		String summaryCount = correct +"/"+ (count);
+		String[] summary = {
+			"",
+			"",
+			"",
+			"",
+			"total:",
+			summaryCount	
+		};
+		data[count] = summary;
+
 		JTable table = new JTable(data, columns);
 		return table;
 	}

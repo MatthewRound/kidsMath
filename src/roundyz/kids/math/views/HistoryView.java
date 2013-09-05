@@ -103,7 +103,7 @@ public class HistoryView extends JFrame
 		int correct = 0;
 		data[0] = columns;
 		for (Question question: this.history.getQuestions()) {
-			data[count] = question.toArray();
+			data[count+1] = question.toArray();
 			if (question.wasCorrect) {
 				correct++;
 			}
@@ -119,7 +119,7 @@ public class HistoryView extends JFrame
 			"total:",
 			summaryCount	
 		};
-		data[count] = summary;
+		data[count+1] = summary;
 
 		JTable table = new JTable(data, columns);
 		return table;

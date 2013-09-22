@@ -88,7 +88,7 @@ public class Question
 		ret[2] = Integer.toString(secondNumber);	
 		ret[3] = Integer.toString(answer);	
 		ret[4] = Integer.toString(guess);	
-		ret[5] = Integer.toString(attempt);	
+		ret[5] = wasCorrect?"Y":"N";	
 		return ret;
 	}
 

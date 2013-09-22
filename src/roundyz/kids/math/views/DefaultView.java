@@ -64,6 +64,7 @@ public class DefaultView extends JFrame
 		secondNumber.setHorizontalAlignment(JTextField.RIGHT);
 		operator.setText(String.valueOf(this.question.getOperator()));
 		operator.setFont(this.bigFont);
+		operator.setHorizontalAlignment(JTextField.RIGHT);
   		this.repaint();
 	}
 

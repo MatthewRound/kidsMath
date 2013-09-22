@@ -34,7 +34,10 @@
 			<fileset dir="${build}"/>
 		  </copy>
         <delete dir="${build}"/>
-    	<jar jarfile="./${ant.project.name}.jar" basedir="${dist}" manifest="${src}/jarmanifest"/>
+    	<jar jarfile="${dist}/${ant.project.name}.jar" basedir="${dist}" manifest="${src}/jarmanifest"/>
+		<copy file="${src}/autorun.inf" tofile="${dist}/autorun.inf" />
+		<copy file="${src}/kidsMath.bat" tofile="${dist}/kidsMath.bat" />
+        <delete dir="${dist}/roundyz"/>
   	</target>
 	
 	<target name="clean" description="clean up" >

@@ -18,15 +18,15 @@ public class QuestionList
 		return this.getCurrent();
 	}
 
-	private void setupQuestionList() {
-
+	private void setupQuestionList() 
+	{
 		for (int i=1;i<=12;i++){
 			for (int z = 1; z <= 12; z++) {
 				int answer = i * z;
 				this.questions.add(new Question(i, z, answer, '*'));
 			}
 		}
-		
+/*
 		for (int i=1;i<=100;i++)
 		{
 			for (int z=1;z<=100;z++){
@@ -34,23 +34,24 @@ public class QuestionList
 				this.questions.add(new Question(i, z, answer, '+'));
 			}
 		}
-		
+
 		for (int i=1;i<=100;i++)
 		{
 			for (int z=1;z<=100;z++){
 				if (i>=z){
-				int answer = i-z;
-				this.questions.add(new Question(i, z, answer, '-'));
+					int answer = i-z;
+					this.questions.add(new Question(i, z, answer, '-'));
 				}
 			}
 		}
-		
-		for (int i=1;i<=12;i++){
-			for (int z = 1; z <= 12; z++) {
-				
-					int answer =  i/z;
+*/
+
+		for (int i=1;i<=144;i++){
+			for (int z = 1; z <= 144; z++) {
+				int answer =  i/z;
+				if (i%z == 0) {
 					this.questions.add(new Question(i, z, answer,(char)248 ));
-				
+				}
 			}
 		}
 	}

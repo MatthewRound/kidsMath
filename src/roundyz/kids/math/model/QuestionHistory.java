@@ -7,6 +7,7 @@ public class QuestionHistory extends QuestionList
 
 	protected int historyLimit;
 
+
 	public QuestionHistory()
 	{
 		this.setQuestions(new Vector<Question>());

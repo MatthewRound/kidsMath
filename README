@@ -2,3 +2,9 @@ KidsMath
 ========
 
 Kids math program to help children with times tables.
+
+
+RUN
+===
+
+java -jar <kidsmaths.jar> [1] [2] [3] [...]
